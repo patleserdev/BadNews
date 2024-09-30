@@ -4,7 +4,7 @@ import Link from "next/link.js";
 const moment = require("moment");
 require("moment/locale/fr");
 moment.locale("fr");
-
+import Image from "next/image.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useSearchParams } from 'next/navigation'
@@ -115,7 +115,7 @@ export default function Searcharticles() {
           className=" flex w-full max-w-[26rem] min-h-[25rem] flex-col justify-start rounded-xl bg-white text-gray-700 shadow-lg mx-auto mb-5"
         >
           <div className=" mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500  shadow-blue-gray-500/40">
-          <img src={article.urlToImage} alt={article.title} />
+          <Image src={article.urlToImage} alt={article.title} width={600} height={400}/>
           </div>
           <div className="p-6">
             <div className="flex items-start justify-start">
@@ -130,7 +130,7 @@ export default function Searcharticles() {
           <div className="p-6">
             <Link legacyBehavior href={`articles/${articleLink}`}>
               <a className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none cursor-pointer">
-                Voir l'article
+                {"Voir l'article"}
               </a>
             </Link>
           </div>

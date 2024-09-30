@@ -42,7 +42,7 @@ export default async function Article({ params: { title } }) {
               bg-white bg-clip-border text-gray-700 shadow-lg"
             >
               <div className="object-cover ">
-                <img
+                <Image
                   className="w-2/3"
                   src={article.urlToImage}
                   alt={article.title}
@@ -67,7 +67,7 @@ export default async function Article({ params: { title } }) {
                  
                 </div>
                 <div className="inline-flex flex-wrap items-center gap-3 group">
-                  Date de l'article : {moment(article.publishedAt).format("LLLL")}
+                  {"Date de l'article :"} {moment(article.publishedAt).format("LLLL")}
                 </div>
               </div>
             </div>
