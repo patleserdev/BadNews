@@ -2,7 +2,8 @@ const moment = require("moment");
 require("moment/locale/fr");
 moment.locale("fr");
 import Searcharticles from "../components/Searcharticles";
-
+import { Suspense } from 'react';
+import SyncLoader from "react-spinners/ClipLoader";
 export default function Articles() {
 
   return (
@@ -10,9 +11,9 @@ export default function Articles() {
 
       <div className="flex flex-row flex-wrap gap-4 row-start-2 items-start justify-start sm:items-start">
         <h1 className="text-5xl w-full underline">ARTICLES</h1>
-
+        <Suspense fallback={<div><SyncLoader /></div>}>
         <Searcharticles/>
-
+        </Suspense>
       </div>
     </main>
   );

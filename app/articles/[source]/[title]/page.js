@@ -5,11 +5,9 @@ const moment = require("moment");
 require("moment/locale/fr");
 moment.locale("fr");
 
-
 export default async function Article({ params }) 
 {
   const { source, title } = params
-  console.log('source et titre',source, title)
   const response = await fetch(
     //  `https://newsapi.org/v2/everything?q=&categorie=general&sources=${source}&apiKey=${process.env.API_KEY}`
      `https://newsapi.org/v2/everything?categorie=general&sortBy=publishedAt&sources=${source}&apiKey=${process.env.API_KEY}`
@@ -22,12 +20,12 @@ export default async function Article({ params })
   // console.log(datas.articles)
   if (datas) {
     datas.articles.map((article) => {
-      console.log(article.title
-        .slice(0, 50)
-        .trim()
-        .replaceAll(" ", "-")
-        .replaceAll(":", "-")
-        .replaceAll(",", "-"),decodeURI(title))
+      // console.log(article.title
+      //   .slice(0, 50)
+      //   .trim()
+      //   .replaceAll(" ", "-")
+      //   .replaceAll(":", "-")
+      //   .replaceAll(",", "-"),decodeURI(title))
       article.title
         .slice(0, 50)
         .trim()
@@ -81,7 +79,7 @@ export default async function Article({ params })
         dataToAside.push(article);
     });
   }
-  console.log('datas',dataToDisplay)
+
   return (
 
     <main className="relative mx-10 grid grid-rows-[10px_1fr_10px] min-h-[75vh] sm:p-20 xl:p-0 lg:p-10 font-[family-name:var(--font-lexend)]">
