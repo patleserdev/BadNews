@@ -93,7 +93,7 @@ export default async function Article({ params })
           "text-white w-1/5 flex flex-col pt-10 w-96 h-full items-start justify-start" : 
           "text-white md:w-full md:px-5 border flex flex-col pt-5 w-96 h-full items-start justify-center"}>
           Articles liés
-        {<Aside children={dataToAside}/>}
+        {<Aside>{dataToAside}</Aside>}
         </aside>
 
       </div>
