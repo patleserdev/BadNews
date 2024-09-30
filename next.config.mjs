@@ -20,6 +20,13 @@ const nextConfig = {
             port: '',
             
           },
+          {
+            protocol: 'https',
+            hostname:'basketball.realgm.com',
+            port: '',
+            
+          },
+          
         ],
       },
   

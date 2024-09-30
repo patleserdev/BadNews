@@ -5,12 +5,17 @@ const moment = require("moment");
 require("moment/locale/fr");
 moment.locale("fr");
 
-export default async function Article({ params: { title } }) {
-  const response = await fetch(
-     `https://newsapi.org/v2/everything?q=&categorie=general&sources=liberation&apiKey=${process.env.API_KEY}`
 
+export default async function Article({ params }) 
+{
+  const { source, title } = params
+  console.log('source et titre',source, title)
+  const response = await fetch(
+    //  `https://newsapi.org/v2/everything?q=&categorie=general&sources=${source}&apiKey=${process.env.API_KEY}`
+     `https://newsapi.org/v2/everything?categorie=general&sortBy=publishedAt&sources=${source}&apiKey=${process.env.API_KEY}`
   );
-// console.log(decodeURI(title))
+
+
   const datas = await response.json();
   const dataToDisplay = [];
   const dataToAside = [];
@@ -20,17 +25,15 @@ export default async function Article({ params: { title } }) {
       console.log(article.title
         .slice(0, 50)
         .trim()
-        .trim()
         .replaceAll(" ", "-")
         .replaceAll(":", "-")
         .replaceAll(",", "-"),decodeURI(title))
       article.title
         .slice(0, 50)
         .trim()
-        .trim()
         .replaceAll(" ", "-")
         .replaceAll(":", "-")
-        .replaceAll(",", "-") === decodeURI(title)
+        .replaceAll(",", "-") == decodeURI(title)
         ? // dataToDisplay.push(<div key={article.id}>{cutString(article.title,50)}...</div>)
           dataToDisplay.push(
             <div
@@ -46,6 +49,8 @@ export default async function Article({ params: { title } }) {
                   className="w-2/3"
                   src={article.urlToImage}
                   alt={article.title}
+                  height={500}
+                  width={1000}
                 />
               </div>
 
@@ -76,6 +81,7 @@ export default async function Article({ params: { title } }) {
         dataToAside.push(article);
     });
   }
+  console.log('datas',dataToDisplay)
   return (
 
     <main className="relative mx-10 grid grid-rows-[10px_1fr_10px] min-h-[75vh] sm:p-20 xl:p-0 lg:p-10 font-[family-name:var(--font-lexend)]">
@@ -83,7 +89,9 @@ export default async function Article({ params: { title } }) {
         
         {dataToDisplay}
 
-        <aside className="text-white w-1/5 flex flex-col pt-10 w-96 h-full items-start justify-start ">
+        <aside className={dataToDisplay.length != 0 ? 
+          "text-white w-1/5 flex flex-col pt-10 w-96 h-full items-start justify-start" : 
+          "text-white md:w-full md:px-5 border flex flex-col pt-5 w-96 h-full items-start justify-center"}>
           Articles liés
         {<Aside children={dataToAside}/>}
         </aside>

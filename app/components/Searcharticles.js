@@ -64,7 +64,7 @@ export default function Searcharticles() {
       setDatas ([])
       }
       setIsLoading(false)
-    }, [query,selectedSource,page]);
+    }, [query,selectedSource,page,url]);
 
   const handleChange=(e)=>{
     if(e.target.checked)
@@ -115,7 +115,7 @@ export default function Searcharticles() {
           className=" flex w-full max-w-[26rem] min-h-[25rem] flex-col justify-start rounded-xl bg-white text-gray-700 shadow-lg mx-auto mb-5"
         >
           <div className=" mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500  shadow-blue-gray-500/40">
-          <Image src={article.urlToImage} alt={article.title} width={600} height={400}/>
+          <Image src={article.urlToImage} alt={article.title} width={600} height={500}/>
           </div>
           <div className="p-6">
             <div className="flex items-start justify-start">
@@ -128,7 +128,8 @@ export default function Searcharticles() {
             </div>
           </div>
           <div className="p-6">
-            <Link legacyBehavior href={`articles/${articleLink}`}>
+           
+            <Link legacyBehavior href={`articles/${article.source.id}/${articleLink}`}>
               <a className="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none cursor-pointer">
                 {"Voir l'article"}
               </a>
