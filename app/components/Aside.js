@@ -36,7 +36,7 @@ export default function Aside({children}){
         .replaceAll(":", "-")
         .replaceAll(",", "-");
          i< 10 ? articlesToDisplay.push(
-    <div className="p-2 flex items-center justify-around">
+    <div key={i} className="p-2 flex items-center justify-around">
         <FontAwesomeIcon icon={faArrowRight} size={"lg"} color={"#ffffff"} />&nbsp; &nbsp;
 
         <Link className={linkStyle}  href={`${articleLink}`}>{article.title}</Link></div>): null})
